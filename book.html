@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="card">
+  <h2 style="margin:0 0 10px">Book an appointment</h2>
+  <div class="badge">Deposit required: ${{ deposit }}</div>
+
+  <form method="post" style="margin-top:14px">
+    <div class="row">
+      <div class="col">
+        <label>Name</label>
+        <input name="name" required placeholder="Your name">
+      </div>
+      <div class="col">
+        <label>Phone</label>
+        <input name="phone" required placeholder="(555) 555-5555">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <label>Barber</label>
+        <select name="barber" required>
+          {% for b in barbers %}<option value="{{ b }}">{{ b }}</option>{% endfor %}
+        </select>
+      </div>
+      <div class="col">
+        <label>Service</label>
+        <select name="service" required>
+          {% for s in services %}<option value="{{ s }}">{{ s }}</option>{% endfor %}
+        </select>
+      </div>
+    </div>
+
+    <label>Date & time</label>
+    <input name="appt_time" type="datetime-local" required>
+
+    <div style="margin-top:14px">
+      <button type="submit">Book & pay deposit</button>
+    </div>
+    <div style="opacity:.75;margin-top:10px;font-size:13px">
+      Note: Stripe checkout can be plugged in later (deposit is enforced in the database now).
+    </div>
+  </form>
+</div>
+{% endblock %}

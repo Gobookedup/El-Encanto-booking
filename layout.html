@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{{ app_name }}</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#0b0d12;color:#eef;margin:0}
+    .wrap{max-width:760px;margin:0 auto;padding:22px}
+    .card{background:#141826;border:1px solid #222a3d;border-radius:14px;padding:18px;margin:16px 0}
+    input,select,button{width:100%;padding:12px;border-radius:12px;border:1px solid #2a3248;background:#0f1320;color:#eef}
+    label{display:block;margin:10px 0 6px;color:#cbd5e1}
+    button{cursor:pointer;background:#1d2742}
+    .row{display:flex;gap:12px;flex-wrap:wrap}
+    .col{flex:1;min-width:220px}
+    .badge{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid #2a3248;color:#cbd5e1}
+    a{color:#9ad1ff;text-decoration:none}
+    .flash{padding:10px 12px;border-radius:12px;margin:10px 0;border:1px solid #2a3248}
+    .flash.error{background:#2a1010}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="row" style="align-items:center;justify-content:space-between">
+      <div>
+        <h1 style="margin:0">{{ app_name }}</h1>
+        <div style="opacity:.8">{{ address if address else "" }}</div>
+      </div>
+      <div>
+        <a class="badge" href="{{ url_for('book') }}">Book</a>
+        <a class="badge" href="{{ url_for('admin') }}">Admin</a>
+      </div>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>

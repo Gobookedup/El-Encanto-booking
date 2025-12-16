@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="card">
+  <h2 style="margin:0 0 8px">Confirmed ✅</h2>
+  <p style="margin:0 0 14px">Your appointment is booked. Deposit recorded.</p>
+  <a class="badge" href="{{ url_for('book') }}">Book another</a>
+</div>
+{% endblock %}

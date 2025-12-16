@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="card">
+  <div class="row" style="align-items:center;justify-content:space-between">
+    <h2 style="margin:0">Admin dashboard</h2>
+    <a class="badge" href="{{ url_for('admin_logout') }}">Logout</a>
+  </div>
+</div>
+
+<div class="card">
+  <h3 style="margin:0 0 10px">Bookings</h3>
+  <div style="overflow:auto">
+    <table style="width:100%;border-collapse:collapse">
+      <thead>
+        <tr>
+          <th style="text-align:left;border-bottom:1px solid #2a3248;padding:8px">Name</th>
+          <th style="text-align:left;border-bottom:1px solid #2a3248;padding:8px">Phone</th>
+          <th style="text-align:left;border-bottom:1px solid #2a3248;padding:8px">Barber</th>
+          <th style="text-align:left;border-bottom:1px solid #2a3248;padding:8px">Service</th>
+          <th style="text-align:left;border-bottom:1px solid #2a3248;padding:8px">Time</th>
+          <th style="text-align:left;border-bottom:1px solid #2a3248;padding:8px">Deposit</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for r in rows %}
+        <tr>
+          <td style="border-bottom:1px solid #2a3248;padding:8px">{{ r.name }}</td>
+          <td style="border-bottom:1px solid #2a3248;padding:8px">{{ r.phone }}</td>
+          <td style="border-bottom:1px solid #2a3248;padding:8px">{{ r.barber }}</td>
+          <td style="border-bottom:1px solid #2a3248;padding:8px">{{ r.service }}</td>
+          <td style="border-bottom:1px solid #2a3248;padding:8px">{{ r.appt_time }}</td>
+          <td style="border-bottom:1px solid #2a3248;padding:8px">${{ r.deposit_amount }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
